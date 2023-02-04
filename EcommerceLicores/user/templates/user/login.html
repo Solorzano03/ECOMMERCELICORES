@@ -1,0 +1,86 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Inicio de sesión{% endblock %}
+
+{% block headers %}
+	
+{% load static %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+	<link rel="stylesheet" href="{% static 'user/css/estilos_login.css' %}">
+    <header class="masthead" width="800" height="400"  style="background-image: url(' {% static 'user/img/licor3.png' %} ')">
+        <div class="overlay"></div>
+          <div class="container">
+             <div class="row">
+               <div class="col-lg-8 col-md-10 mx-auto">
+                 <div class="site-heading">
+          
+                </div>
+              </div>
+           </div>
+        </div>
+      </header>
+{% endblock %} 
+
+{% block contend %}
+ {% load static %}
+       <div class="container  mt-5 my-4 gradient-custom">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-xl-10">
+                    <div class="card rounded-4 contenido">
+                        <div class="card-body p-4">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-md-5 p-2 col-xl-5">
+                                    <div class="text-center pt-md-5 pb-5 my-md-5">
+                  <img class="imagen-login" src="{% static 'core/img/logo.jpeg' %}"  alt="logo">
+                </div>
+              </div>
+              <div class=" col-md-7 p-3 col-x-5">
+              
+                  <h1 class="fw-bold-md-4 pb-2 text-center">Inicio de Sesión</h1>
+                <form  method="POST">
+                  {% csrf_token %}
+                  {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                      <div id="form_errors">
+                        {% for key, value in form.errors.items %}
+                          <strong>{{ value }}</strong>
+                        {% endfor %}
+                      </div>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  {% endif %}
+                  <div class="mb-4 py-1">
+                    <label for="InputUserName" class="form-label">Nombre de Usuario</label>
+                    {{form.username}}
+                  </div>
+                  <div class="mb-4 py-1">
+                    <label for="inputPassword1" class="form-label">Contraseña</label>
+                    {{form.password}} 
+                  </div>
+                  <div class="block center">
+                    <label for="remember_me">Remember me</label>
+                    {{ form.remember_me }}
+                  </div>
+                  <div class="mb-4 py-1 text-end">
+                    <a href="{% url 'password_reset' %}">Olvidó contraseña?</a>
+                  </div>
+                  <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-primary" type="submit">Iniciar Sesion</button>
+                  </div>
+                  <div class="pt-4 py-3">
+                    <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+                    <p>No posee una cuenta? <a href="{% url 'register' %}">Crear Cuenta</a> </p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+          </div>
+        </div>
+      {% endblock %}

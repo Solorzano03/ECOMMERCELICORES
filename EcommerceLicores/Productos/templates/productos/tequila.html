@@ -1,0 +1,28 @@
+{% extends 'core/categorias.html' %}
+{% block cards %}
+
+        {% for productos in tequila  %}
+            <div class="col me-md-3 me-sm-5 mb-5">
+        <!-- aqui card -->
+                <div class="card shadow " style="width: 18rem; height: 36rem;">
+                    {% if productos.imagen %}
+                    <img src="{{productos.imagen.url}}" height="250" class="card-img-top" alt="imagen">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title" style=" font-weight: bold ;">{{productos.marca}}</h5>
+                        <p class="card-text">{{ productos.descripcion }}</p>
+                        <div class="btn-toolbar justify-content-between container">
+                        <div class="btn-group border shadow p-2" role="group" aria-label="First group">
+                            <span>${{ productos.precio }} </span>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <div class="input-group">
+                            <button class="btn btn-primary" type="button"><i class="bi bi-cart-plus-fill"></i></button>
+                        </div>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+{% endblock %}
